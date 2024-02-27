@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% if request.user.is_authenticated %}
+    <p>{{ request.user }}</p>
+    <a href="{% url 'users:logout' %}">Выход</a>
+{% else %}
+    <a href="{% url 'users:login' %}">Войти</a>
+{% endif %}
+<hr>
+<h1>ToDo List</h1>
+<a href="{% url 'tasks:create' %}">Добавить задание</a>
+<form action="" method="get">
+    <input type="text" name="search-area" value="{{search_input}}">
+    <button type="submit">Поиск</button>
+</form>
+<table>
+    <tr>
+        <th>task name</th>
+        <th></th>
+        <th></th>
+    </tr>
+    {% if tasks %}
+    {% for task in tasks %}
+    <tr>
+        <td>{{task.title}}</td>
+        <td><a href="{% url 'tasks:task_edit' task.id %}">Изменить</a></td>
+        <td><a href="{% url 'tasks:task_delete' task.id %}">Удалить</a></td>
+    </tr>
+    {% endfor %}
+    {% else %}
+    <p>Заданий не найдено</p>
+    {% endif %}
+</table>
+</body>
+</html>

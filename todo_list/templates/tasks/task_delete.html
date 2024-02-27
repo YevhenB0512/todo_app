@@ -1,0 +1,6 @@
+<a href="{% url 'tasks:tasklist' %}">Назад</a>
+<form action="" method="post">
+    {% csrf_token %}
+    <p>Вы действительно хотите удалить это задание?</p>
+    <button type="submit">Удалить</button>
+</form>

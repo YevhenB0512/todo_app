@@ -1,0 +1,7 @@
+<h1>Войти в систему</h1>
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Войти</button> | <button type="button"><a href="{% url 'users:registration' %}">Регистрация</a></button>
+</form>
