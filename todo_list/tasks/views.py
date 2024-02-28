@@ -6,11 +6,14 @@ from tasks.forms import TaskForm
 
 @login_required
 def task_list(request):
-    tasks = Task.objects.filter(user__id=request.user.id)
+    tasks = Task.objects.filter(user__id=request.user.id).order_by('created')
     search_input = request.GET.get('search-area')
+    count = tasks.filter(complete=False).count()
     if search_input:
         tasks = tasks.filter(title__icontains=search_input)
-    return render(request, 'tasks/tasks.html', {'tasks': tasks, 'search_input': search_input})
+    return render(request, 'tasks/tasks.html', {'tasks': tasks,
+                                                'search_input': search_input,
+                                                'count': count})
 
 
 @login_required

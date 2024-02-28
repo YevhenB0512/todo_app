@@ -1,7 +1,17 @@
-<h1>Регистрация</h1>
+{% extends 'base.html' %}
 
+{% load static %}
+
+{% block content %}
+<div class="header-bar">
+<h1>Регистрация</h1>
+</div>
+<div class="card-body">
 <form action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Зарегистрироваться</button>
+    <button class="button" type="submit">Зарегистрироваться</button>
 </form>
+    <p>Уже есть аккаунт? <a href="{% url 'users:login' %}">Войти</a></p>
+</div>
+{% endblock %}

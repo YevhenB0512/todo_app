@@ -1,6 +1,16 @@
-<a href="{% url 'tasks:tasklist' %}">Назад</a>
-<form action="" method="post">
-    {% csrf_token %}
-    <p>Вы действительно хотите удалить это задание?</p>
-    <button type="submit">Удалить</button>
-</form>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="header-bar">
+    <a href="{% url 'tasks:tasklist' %}">&#8592; Назад</a>
+</div>
+<div class="card-body">
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>Вы действительно хотите удалить это задание?</p>
+        <button class="button" type="submit">Удалить</button>
+    </form>
+</div>
+
+{% endblock %}
